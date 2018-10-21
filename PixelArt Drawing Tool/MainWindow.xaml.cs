@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace PixelArt_Drawing_Tool
 {
@@ -31,8 +32,8 @@ namespace PixelArt_Drawing_Tool
         }
 
         /// <summary>
-        /// Draws a square at
-        /// the specified position.
+        ///  Draws a square at
+        ///  the specified position.
         /// </summary>
         private void Draw(int x, int y, Color color)
         {
@@ -80,6 +81,22 @@ namespace PixelArt_Drawing_Tool
             // making sure background size matches the draw area
             PageBackground.Width = PageContainer.ActualWidth;
             PageBackground.Height = PageContainer.ActualHeight;
+        }
+
+        private void MenuItemSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = Environment.GetFolderPath(
+                Environment.SpecialFolder.Desktop);
+
+            dialog.FileName = "untitled";
+            dialog.DefaultExt = ".png";
+            dialog.Filter = "PNG (*.png)|*.png";
+
+            if (dialog.ShowDialog() == true)
+            {
+                page.Save(dialog.FileName);
+            }
         }
     }
 }

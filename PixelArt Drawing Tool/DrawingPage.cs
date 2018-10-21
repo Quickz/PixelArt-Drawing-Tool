@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,8 +48,31 @@ namespace PixelArt_Drawing_Tool
         }
 
         /// <summary>
-        /// Draws a pixel on the specified
-        /// location in the page.
+        ///  Saves a file of the image
+        ///  at the specified location.
+        /// </summary>
+        /// <param name="path">
+        ///  Full path to the file
+        ///  (Example: C:\untitled.png).
+        /// </param>
+        public void Save(string path)
+        {
+            int width = Convert.ToInt32(Source.Width);
+            int height = Convert.ToInt32(Source.Height);
+
+            using (
+                FileStream stream = new FileStream(path,
+                FileMode.Create))
+            {
+                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(Source));
+                encoder.Save(stream);
+            }
+        }
+
+        /// <summary>
+        ///  Draws a pixel on the specified
+        ///  location in the page.
         /// </summary>
         public void Draw(int x, int y, Color color)
         {
