@@ -57,9 +57,6 @@ namespace PixelArt_Drawing_Tool
         /// </param>
         public void Save(string path)
         {
-            int width = Convert.ToInt32(Source.Width);
-            int height = Convert.ToInt32(Source.Height);
-
             using (
                 FileStream stream = new FileStream(path,
                 FileMode.Create))
