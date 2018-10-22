@@ -20,7 +20,8 @@
                           InputGestureText="Ctrl+S"
                           Click="MenuItemSave_Click"/>
                 <MenuItem Name="MenuItemExit"
-                          Header="_Exit"/>
+                          Header="_Exit"
+                          Click="MenuItemExit_Click"/>
             </MenuItem>
         </Menu>
 

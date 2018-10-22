@@ -119,5 +119,10 @@ namespace PixelArt_Drawing_Tool
         {
             shortcutManager.HandleKeyUp(e.Key);
         }
+
+        private void MenuItemExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
