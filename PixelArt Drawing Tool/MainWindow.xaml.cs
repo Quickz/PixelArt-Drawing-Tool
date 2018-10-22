@@ -50,15 +50,12 @@ namespace PixelArt_Drawing_Tool
             page.Draw(x, y, color);
         }
 
-        private void LoadShortcuts()
+        /// <summary>
+        ///  Takes the pointer position and rounds it down
+        ///  to a position of a pixel on the page.
+        /// </summary>
+        private VectorInt GetPixelPosition(Point position)
         {
-            shortcutManager.Add(Key.S, true, Save);
-        }
-
-        private void PageContainer_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point position = e.GetPosition(PageContainer);
-
             // size of single pixel
             double pixelWidth = PageContainer.ActualWidth / page.Width;
             double pixelHeight = PageContainer.ActualHeight / page.Height;
@@ -66,20 +63,42 @@ namespace PixelArt_Drawing_Tool
             int column = (int)Math.Floor(position.X / pixelWidth);
             int row = (int)Math.Floor(position.Y / pixelHeight);
 
+            return new VectorInt(column, row);
+        }
+
+        private void LoadShortcuts()
+        {
+            shortcutManager.Add(Key.S, true, Save);
+        }
+
+        private void ProcessDrawingInput(MouseEventArgs e)
+        {
+            Point cursorPosition = e.GetPosition(PageContainer);
+            VectorInt pixelPosition = GetPixelPosition(cursorPosition);
+
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Draw(column, row, Colors.Red);
+                Draw(pixelPosition.x, pixelPosition.y, Colors.Red);
             }
 
             if (e.RightButton == MouseButtonState.Pressed)
             {
-                Draw(column, row, Colors.Transparent);
+                Draw(pixelPosition.x, pixelPosition.y, Colors.Transparent);
             }
+        }
+
+        private void PageContainer_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ProcessDrawingInput(e);
         }
 
         private void PageContainer_MouseMove(object sender, MouseEventArgs e)
         {
-            
+            if (e.LeftButton == MouseButtonState.Pressed ||
+                e.RightButton == MouseButtonState.Pressed)
+            {
+                ProcessDrawingInput(e);
+            }
         }
 
         private void PageContainer_Loaded(object sender, RoutedEventArgs e)
