@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PixelArt_Drawing_Tool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Height="450"
+        Width="800"
+        KeyDown="Window_KeyDown"
+        KeyUp="Window_KeyUp">
     <DockPanel Background="LightGray">
         <Menu DockPanel.Dock="Top" Background="White">
             <MenuItem Header="_File">
@@ -13,6 +17,7 @@
                           Header="_Open"/>
                 <MenuItem Name="MenuItemSave"
                           Header="_Save"
+                          InputGestureText="Ctrl+S"
                           Click="MenuItemSave_Click"/>
                 <MenuItem Name="MenuItemExit"
                           Header="_Exit"/>
@@ -21,7 +26,8 @@
 
         <DockPanel DockPanel.Dock="Bottom">
 
-            <Grid DockPanel.Dock="Top" Grid.IsSharedSizeScope="True">
+            <Grid DockPanel.Dock="Top"
+                  Grid.IsSharedSizeScope="True">
                 
                 <Canvas Name="PageBackground"
                         Width="auto"
@@ -38,19 +44,6 @@
                        RenderOptions.BitmapScalingMode="NearestNeighbor"/>
 
             </Grid>
-            
-
-            
-            <!--
-            <StackPanel DockPanel.Dock="Top"
-                        Background="White"
-                        Height="auto"
-                        Width="auto"
-                        Margin="50"
-                        RenderOptions.BitmapScalingMode="NearestNeighbor"/>-->
-
         </DockPanel>
-        
-
     </DockPanel>
 </Window>

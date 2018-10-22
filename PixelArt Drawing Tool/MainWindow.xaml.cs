@@ -22,13 +22,14 @@ namespace PixelArt_Drawing_Tool
     public partial class MainWindow : Window
     {
         private DrawingPage page;
+        private ShortcutManager shortcutManager = new ShortcutManager();
 
         public MainWindow()
         {
             InitializeComponent();
-
             page = new DrawingPage(16, 16);
             PageContainer.Source = page.Source;
+            LoadShortcuts();
         }
 
         /// <summary>
@@ -47,6 +48,11 @@ namespace PixelArt_Drawing_Tool
             }
 
             page.Draw(x, y, color);
+        }
+
+        private void LoadShortcuts()
+        {
+            shortcutManager.Add(Key.S, true, Save);
         }
 
         private void PageContainer_MouseDown(object sender, MouseButtonEventArgs e)
@@ -85,6 +91,11 @@ namespace PixelArt_Drawing_Tool
 
         private void MenuItemSave_Click(object sender, RoutedEventArgs e)
         {
+            Save();
+        }
+
+        private void Save()
+        {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = Environment.GetFolderPath(
                 Environment.SpecialFolder.Desktop);
@@ -97,6 +108,16 @@ namespace PixelArt_Drawing_Tool
             {
                 page.Save(dialog.FileName);
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            shortcutManager.HandleKeyDown(e.Key);
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            shortcutManager.HandleKeyUp(e.Key);
         }
     }
 }
