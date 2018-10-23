@@ -101,13 +101,6 @@ namespace PixelArt_Drawing_Tool
             }
         }
 
-        private void PageContainer_Loaded(object sender, RoutedEventArgs e)
-        {
-            // making sure background size matches the draw area
-            PageBackground.Width = PageContainer.ActualWidth;
-            PageBackground.Height = PageContainer.ActualHeight;
-        }
-
         private void MenuItemSave_Click(object sender, RoutedEventArgs e)
         {
             Save();

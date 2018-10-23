@@ -31,9 +31,14 @@
                   Grid.IsSharedSizeScope="True">
                 
                 <Canvas Name="PageBackground"
-                        Width="auto"
+                        Width="{
+                            Binding Path=ActualWidth,
+                            ElementName=PageContainer}"
+                        Height="{
+                            Binding Path=ActualHeight,
+                            ElementName=PageContainer}"
                         Margin="50"
-                        Background="white"/>
+                        Background="White"/>
 
                 <Image Name="PageContainer"
                        Height="auto"
@@ -41,7 +46,6 @@
                        Margin="50"
                        MouseDown="PageContainer_MouseDown"
                        MouseMove="PageContainer_MouseMove"
-                       Loaded="PageContainer_Loaded"
                        RenderOptions.BitmapScalingMode="NearestNeighbor"/>
 
             </Grid>
