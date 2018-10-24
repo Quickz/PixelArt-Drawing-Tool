@@ -14,18 +14,37 @@ namespace PixelArt_Drawing_Tool
     {
         public WriteableBitmap Source { get; private set; }
 
-        public int Width { get; private set; }
-        public int Height { get; private set; }
+        /// <summary>
+        ///  Called when Source is deleted
+        ///  or overwritten with a new one.
+        /// </summary>
+        public event EventHandler PageSourceChanged;
+
+        public int Width
+        {
+            get
+            {
+                return Source.PixelWidth;
+            }
+        }
+        public int Height
+        {
+            get
+            {
+                return Source.PixelHeight;
+            }
+        }
 
         private int stride;
 
         public DrawingPage(int width, int height)
         {
-            this.Width = width;
-            this.Height = height;
             Create(width, height);
         }
 
+        /// <summary>
+        ///  Creates a new blank page.
+        /// </summary>
         private void Create(int width, int height)
         {
             // defining parameters
@@ -45,6 +64,26 @@ namespace PixelArt_Drawing_Tool
                 stride);
 
             Source = new WriteableBitmap(bitmap);
+        }
+
+        public void ResizeTo(int width, int height)
+        {
+            if (this.Width == width && this.Height == height)
+            {
+                return;
+            }
+
+            Create(width, height);
+            OnPageSourceChanged();
+        }
+
+        /// <summary>
+        ///  Called when Source is deleted
+        ///  or overwritten with a new one.
+        /// </summary>
+        private void OnPageSourceChanged()
+        {
+            PageSourceChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

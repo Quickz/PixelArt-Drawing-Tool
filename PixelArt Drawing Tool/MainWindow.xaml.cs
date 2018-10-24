@@ -24,12 +24,26 @@ namespace PixelArt_Drawing_Tool
         private DrawingPage page;
         private ShortcutManager shortcutManager = new ShortcutManager();
 
+        private VectorInt defaultSize = new VectorInt(16, 16);
+
         public MainWindow()
         {
             InitializeComponent();
-            page = new DrawingPage(16, 16);
+            page = new DrawingPage(defaultSize.x, defaultSize.y);
             PageContainer.Source = page.Source;
+            page.PageSourceChanged += OnPageSourceChanged;
+
             LoadShortcuts();
+        }
+
+        /// <summary>
+        ///  Called when image Source
+        ///  is deleted or overwritten
+        ///  from resizing or something else.
+        /// </summary>
+        private void OnPageSourceChanged(object sender, EventArgs args)
+        {
+            PageContainer.Source = page.Source;
         }
 
         /// <summary>
@@ -135,6 +149,16 @@ namespace PixelArt_Drawing_Tool
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void ButtonResize_Click(object sender, RoutedEventArgs e)
+        {
+            // resizing page if values can be converted into numbers
+            if (int.TryParse(TextBoxPageWidth.Text, out int width) &&
+                int.TryParse(TextBoxPageHeight.Text, out int height))
+            {
+                page.ResizeTo(width, height);
+            }
         }
     }
 }
