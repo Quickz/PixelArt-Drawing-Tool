@@ -47,6 +47,11 @@ namespace PixelArt_Drawing_Tool
         /// </summary>
         private void Create(int width, int height)
         {
+            if (width < 1 || height < 1)
+            {
+                return;
+            }
+
             // defining parameters
             PixelFormat format = PixelFormats.Bgra32;
             stride = (width * format.BitsPerPixel + 7) / 8;
