@@ -71,6 +71,10 @@ namespace PixelArt_Drawing_Tool
             Source = new WriteableBitmap(bitmap);
         }
 
+        /// <summary>
+        ///  Changes the current size
+        ///  of the page.
+        /// </summary>
         public void ResizeTo(int width, int height)
         {
             if (this.Width == width && this.Height == height)
