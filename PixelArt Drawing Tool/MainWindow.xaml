@@ -29,12 +29,27 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
 
+                <StackPanel Grid.Column="0"
+                            Background="White">
+                    
+                    <TextBox Name="TextBoxColor"
+                             Text="#000000"
+                             FontSize="14"
+                             VerticalContentAlignment="Center"/>
+
+                    <Button Name="ButtonChangeColor"
+                            Content="Change"
+                            Click="ButtonChangeColor_Click"/>
+
+                </StackPanel>
+                
                 <Grid Name="PageRegion"
-                      Grid.Column="0"
+                      Grid.Column="1"
                       DockPanel.Dock="Top"
                       Grid.IsSharedSizeScope="True">
 
@@ -57,7 +72,7 @@
                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                 </Grid>
 
-                <StackPanel Grid.Column="1"
+                <StackPanel Grid.Column="2"
                             Background="white">
                     
                     <UniformGrid Columns="2" Margin="10 10 10 0">
@@ -90,7 +105,6 @@
                     
                 </StackPanel>
             </Grid>
-            
             
         </DockPanel>
     </DockPanel>

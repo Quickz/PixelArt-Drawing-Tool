@@ -23,8 +23,8 @@ namespace PixelArt_Drawing_Tool
     {
         private DrawingPage page;
         private ShortcutManager shortcutManager = new ShortcutManager();
-
         private VectorInt defaultSize = new VectorInt(16, 16);
+        private Color brushColor = Colors.Black;
 
         public MainWindow()
         {
@@ -32,6 +32,7 @@ namespace PixelArt_Drawing_Tool
             page = new DrawingPage(defaultSize.x, defaultSize.y);
             PageContainer.Source = page.Source;
             page.PageSourceChanged += OnPageSourceChanged;
+
 
             LoadShortcuts();
         }
@@ -92,7 +93,7 @@ namespace PixelArt_Drawing_Tool
 
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Draw(pixelPosition.x, pixelPosition.y, Colors.Red);
+                Draw(pixelPosition.x, pixelPosition.y, brushColor);
             }
 
             if (e.RightButton == MouseButtonState.Pressed)
@@ -159,6 +160,23 @@ namespace PixelArt_Drawing_Tool
             {
                 page.ResizeTo(width, height);
             }
+        }
+
+        private void ButtonChangeColor_Click(object sender, RoutedEventArgs e)
+        {
+            string colorHex = TextBoxColor.Text.Substring(1);
+
+            string redHex = colorHex.Substring(0, 2);
+            string greenHex = colorHex.Substring(2, 2);
+            string blueHex = colorHex.Substring(4, 2);
+
+            byte red = Convert.ToByte(redHex, 16);
+            byte green = Convert.ToByte(greenHex, 16);
+            byte blue = Convert.ToByte(blueHex, 16);
+
+            Color newColor = Color.FromRgb(red, green, blue);
+
+            brushColor = newColor;
         }
     }
 }

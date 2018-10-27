@@ -48,7 +48,6 @@ namespace PixelArt_Drawing_Tool
         ///  in the shortcut list if possible
         ///  and runs the method associated with it.
         /// </summary>
-        /// <param name="key"></param>
         public void HandleKeyDown(Key key)
         {
             if (key == Key.LeftCtrl || key == Key.RightCtrl)
