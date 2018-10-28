@@ -164,7 +164,13 @@ namespace PixelArt_Drawing_Tool
 
         private void ButtonChangeColor_Click(object sender, RoutedEventArgs e)
         {
-            string colorHex = TextBoxColor.Text.Substring(1);
+            RectangleColor.Fill = new SolidColorBrush(brushColor);
+            ChangeColor(TextBoxColor.Text);
+        }
+
+        private void ChangeColor(string colorHexString)
+        {
+            string colorHex = colorHexString.Substring(1);
 
             string redHex = colorHex.Substring(0, 2);
             string greenHex = colorHex.Substring(2, 2);

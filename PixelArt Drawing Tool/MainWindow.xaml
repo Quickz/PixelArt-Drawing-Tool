@@ -36,12 +36,21 @@
 
                 <StackPanel Grid.Column="0"
                             Background="White">
-                    
-                    <TextBox Name="TextBoxColor"
+
+                    <StackPanel Orientation="Horizontal">
+                        
+                        <Rectangle Name="RectangleColor"
+                               Width="50"
+                               Height="50"
+                               Fill="Black"/>
+
+                        <TextBox Name="TextBoxColor"
                              Text="#000000"
                              FontSize="14"
                              VerticalContentAlignment="Center"/>
-
+                        
+                    </StackPanel>
+                    
                     <Button Name="ButtonChangeColor"
                             Content="Change"
                             Click="ButtonChangeColor_Click"/>
