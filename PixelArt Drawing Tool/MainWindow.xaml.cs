@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,9 @@ namespace PixelArt_Drawing_Tool
         private ShortcutManager shortcutManager = new ShortcutManager();
         private VectorInt defaultSize = new VectorInt(16, 16);
         private Color brushColor = Colors.Black;
+
+        // last valid color text box value that was assigned
+        private string SavedColorText = "#000000";
 
         public MainWindow()
         {
@@ -164,10 +168,18 @@ namespace PixelArt_Drawing_Tool
 
         private void ButtonChangeColor_Click(object sender, RoutedEventArgs e)
         {
-            RectangleColor.Fill = new SolidColorBrush(brushColor);
             ChangeColor(TextBoxColor.Text);
+            RectangleColor.Fill = new SolidColorBrush(brushColor);
         }
 
+        /// <summary>
+        ///  Changes brush color the
+        ///  the specified one.
+        /// </summary>
+        /// <param name="colorHexString">
+        ///  Hexadecimal string (Ex. #000000)
+        ///  that represents a color.
+        /// </param>
         private void ChangeColor(string colorHexString)
         {
             string colorHex = colorHexString.Substring(1);
@@ -181,8 +193,38 @@ namespace PixelArt_Drawing_Tool
             byte blue = Convert.ToByte(blueHex, 16);
 
             Color newColor = Color.FromRgb(red, green, blue);
-
             brushColor = newColor;
+        }
+
+        private void TextBoxColor_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string hexValue = Regex.Replace(
+                TextBoxColor.Text,
+                @"[^0-9a-fA-F]",
+                string.Empty);
+
+            // short version of hex value
+            if (hexValue.Length == 3)
+            {
+                hexValue = string.Format(
+                    "{0}{0}{1}{1}{2}{2}",
+                    hexValue[0],
+                    hexValue[1],
+                    hexValue[2]);
+            }
+            // invalid length
+            else if (hexValue.Length != 6)
+            {
+                TextBoxColor.Text = SavedColorText;
+                return;
+            }
+
+            TextBoxColor.Text = "#" + hexValue;
+        }
+
+        private void TextBoxColor_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SavedColorText = TextBoxColor.Text;
         }
     }
 }

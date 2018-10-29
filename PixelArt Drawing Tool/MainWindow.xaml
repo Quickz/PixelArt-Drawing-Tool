@@ -45,9 +45,11 @@
                                Fill="Black"/>
 
                         <TextBox Name="TextBoxColor"
-                             Text="#000000"
-                             FontSize="14"
-                             VerticalContentAlignment="Center"/>
+                                 Text="#000000"
+                                 FontSize="14"
+                                 VerticalContentAlignment="Center"
+                                 GotFocus="TextBoxColor_GotFocus"
+                                 LostFocus="TextBoxColor_LostFocus"/>
                         
                     </StackPanel>
                     
