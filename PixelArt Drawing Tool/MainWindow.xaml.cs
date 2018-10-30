@@ -37,7 +37,6 @@ namespace PixelArt_Drawing_Tool
             PageContainer.Source = page.Source;
             page.PageSourceChanged += OnPageSourceChanged;
 
-
             LoadShortcuts();
         }
 
@@ -168,6 +167,7 @@ namespace PixelArt_Drawing_Tool
 
         private void ButtonChangeColor_Click(object sender, RoutedEventArgs e)
         {
+            UpdateTextBoxColorContent();
             ChangeColor(TextBoxColor.Text);
             RectangleColor.Fill = new SolidColorBrush(brushColor);
         }
@@ -198,6 +198,22 @@ namespace PixelArt_Drawing_Tool
 
         private void TextBoxColor_LostFocus(object sender, RoutedEventArgs e)
         {
+            ButtonChangeColor.IsDefault = false;
+            UpdateTextBoxColorContent();
+        }
+
+        private void TextBoxColor_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ButtonChangeColor.IsDefault = true;
+            SavedColorText = TextBoxColor.Text;
+        }
+
+        /// <summary>
+        ///  Filters out any invalid content
+        ///  out of color text box content.
+        /// </summary>
+        private void UpdateTextBoxColorContent()
+        {
             string hexValue = Regex.Replace(
                 TextBoxColor.Text,
                 @"[^0-9a-fA-F]",
@@ -220,11 +236,6 @@ namespace PixelArt_Drawing_Tool
             }
 
             TextBoxColor.Text = "#" + hexValue;
-        }
-
-        private void TextBoxColor_GotFocus(object sender, RoutedEventArgs e)
-        {
-            SavedColorText = TextBoxColor.Text;
         }
     }
 }
