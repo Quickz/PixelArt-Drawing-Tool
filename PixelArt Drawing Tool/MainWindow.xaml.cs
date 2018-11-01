@@ -194,6 +194,7 @@ namespace PixelArt_Drawing_Tool
 
             Color newColor = Color.FromRgb(red, green, blue);
             brushColor = newColor;
+            UpdateBrushOpacity();
         }
 
         private void TextBoxColor_LostFocus(object sender, RoutedEventArgs e)
@@ -236,6 +237,25 @@ namespace PixelArt_Drawing_Tool
             }
 
             TextBoxColor.Text = "#" + hexValue;
+        }
+
+        private void SliderColorOpacity_ValueChanged(
+            object sender,
+            RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (RectangleColor == null)
+            {
+                return;
+            }
+
+            brushColor.A = (byte)(2.5 * e.NewValue);
+            RectangleColor.Fill = new SolidColorBrush(brushColor);
+        }
+
+        private void UpdateBrushOpacity()
+        {
+            brushColor.A = (byte)(2.5 * SliderColorOpacity.Value);
+            RectangleColor.Fill = new SolidColorBrush(brushColor);
         }
     }
 }

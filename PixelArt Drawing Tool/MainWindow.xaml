@@ -37,7 +37,18 @@
                 <StackPanel Grid.Column="0"
                             Background="White">
 
-                    <StackPanel Orientation="Horizontal">
+                    <Label Content="Opacity"
+                           FontSize="14"
+                           HorizontalContentAlignment="Center"/>
+
+                    <Slider Name="SliderColorOpacity"
+                            ValueChanged="SliderColorOpacity_ValueChanged"
+                            Maximum="100"
+                            Value="100"
+                            Margin="10 0 10 10"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10 0">
                         
                         <Rectangle Name="RectangleColor"
                                Width="50"
@@ -55,6 +66,7 @@
                     
                     <Button Name="ButtonChangeColor"
                             Content="Change"
+                            Margin="10"
                             Click="ButtonChangeColor_Click"/>
 
                 </StackPanel>
