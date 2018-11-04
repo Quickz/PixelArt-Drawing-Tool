@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PixelartBrush.cs" />
     <Compile Include="ShortcutManager.cs" />
     <Compile Include="VectorInt.cs" />
     <Page Include="MainWindow.xaml">

@@ -25,8 +25,8 @@ namespace PixelArt_Drawing_Tool
         private DrawingPage page;
         private ShortcutManager shortcutManager = new ShortcutManager();
         private VectorInt defaultSize = new VectorInt(16, 16);
-        private Color brushColor = Colors.Black;
-
+        private PixelartBrush brush = new PixelartBrush();
+        
         // last valid color text box value that was assigned
         private string SavedColorText = "#000000";
 
@@ -38,6 +38,8 @@ namespace PixelArt_Drawing_Tool
             page.PageSourceChanged += OnPageSourceChanged;
 
             LoadShortcuts();
+
+            brush.OpacityChanged += UpdateRectangleColor;
         }
 
         /// <summary>
@@ -96,7 +98,7 @@ namespace PixelArt_Drawing_Tool
 
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Draw(pixelPosition.x, pixelPosition.y, brushColor);
+                Draw(pixelPosition.x, pixelPosition.y, brush.Color);
             }
 
             if (e.RightButton == MouseButtonState.Pressed)
@@ -169,7 +171,7 @@ namespace PixelArt_Drawing_Tool
         {
             UpdateTextBoxColorContent();
             ChangeColor(TextBoxColor.Text);
-            RectangleColor.Fill = new SolidColorBrush(brushColor);
+            RectangleColor.Fill = new SolidColorBrush(brush.Color);
         }
 
         /// <summary>
@@ -192,9 +194,7 @@ namespace PixelArt_Drawing_Tool
             byte green = Convert.ToByte(greenHex, 16);
             byte blue = Convert.ToByte(blueHex, 16);
 
-            Color newColor = Color.FromRgb(red, green, blue);
-            brushColor = newColor;
-            UpdateBrushOpacity();
+            brush.ChangeColor(red, green, blue);
         }
 
         private void TextBoxColor_LostFocus(object sender, RoutedEventArgs e)
@@ -248,14 +248,12 @@ namespace PixelArt_Drawing_Tool
                 return;
             }
 
-            brushColor.A = (byte)(2.5 * e.NewValue);
-            RectangleColor.Fill = new SolidColorBrush(brushColor);
+            brush.Opacity = e.NewValue;
         }
 
-        private void UpdateBrushOpacity()
+        private void UpdateRectangleColor(object sender, EventArgs args)
         {
-            brushColor.A = (byte)(2.5 * SliderColorOpacity.Value);
-            RectangleColor.Fill = new SolidColorBrush(brushColor);
+            RectangleColor.Fill = new SolidColorBrush(brush.Color);
         }
     }
 }
