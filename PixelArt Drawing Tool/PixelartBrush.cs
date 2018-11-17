@@ -10,6 +10,7 @@ namespace PixelArt_Drawing_Tool
     class PixelartBrush
     {
         public event EventHandler OpacityChanged;
+        public event EventHandler BrightnessChanged;
 
         public Color Color
         {
@@ -38,7 +39,21 @@ namespace PixelArt_Drawing_Tool
             }
         }
 
+        public double Brightness
+        {
+            get
+            {
+                return brightness;
+            }
+            set
+            {
+                brightness = value;
+                OnBrightnessChanged();
+            }
+        }
+
         private double opacity;
+        private double brightness;
 
         private Color rawColor;
 
@@ -46,6 +61,7 @@ namespace PixelArt_Drawing_Tool
         {
             rawColor = Colors.Black;
             opacity = 100;
+            brightness = 0;
         }
 
         /// <summary>
@@ -57,11 +73,17 @@ namespace PixelArt_Drawing_Tool
             rawColor.R = red;
             rawColor.G = green;
             rawColor.B = blue;
+            Brightness = ((double)red + green + blue) / 765 * 100;
         }
 
         private void OnOpacityChanged()
         {
             OpacityChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnBrightnessChanged()
+        {
+            BrightnessChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

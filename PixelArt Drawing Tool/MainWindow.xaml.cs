@@ -40,6 +40,8 @@ namespace PixelArt_Drawing_Tool
             LoadShortcuts();
 
             brush.OpacityChanged += UpdateRectangleColor;
+            brush.BrightnessChanged += UpdateRectangleColor;
+            brush.BrightnessChanged += UpdateSliderBrightness;
         }
 
         /// <summary>
@@ -251,9 +253,21 @@ namespace PixelArt_Drawing_Tool
             brush.Opacity = e.NewValue;
         }
 
+        private void SliderColorBrightness_ValueChanged(
+            object sender,
+            RoutedPropertyChangedEventArgs<double> e)
+        {
+            UpdateSliderBrightness(this, EventArgs.Empty);
+        }
+
         private void UpdateRectangleColor(object sender, EventArgs args)
         {
             RectangleColor.Fill = new SolidColorBrush(brush.Color);
+        }
+
+        private void UpdateSliderBrightness(object sender, EventArgs args)
+        {
+            SliderColorBrightness.Value = brush.Brightness;
         }
     }
 }

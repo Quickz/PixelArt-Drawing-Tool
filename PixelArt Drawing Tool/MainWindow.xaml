@@ -37,6 +37,18 @@
                 <StackPanel Grid.Column="0"
                             Background="White">
 
+                    <Label Content="Brightness"
+                           FontSize="14"
+                           HorizontalContentAlignment="Center"/>
+
+                    <Slider Name="SliderColorBrightness"
+                            ValueChanged="SliderColorBrightness_ValueChanged"
+                            Maximum="100"
+                            Value="0"
+                            IsSnapToTickEnabled="True"
+                            TickFrequency="1"
+                            Margin="10 0 10 10"/>
+                    
                     <Label Content="Opacity"
                            FontSize="14"
                            HorizontalContentAlignment="Center"/>
