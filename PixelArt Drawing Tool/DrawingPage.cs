@@ -35,7 +35,15 @@ namespace PixelArt_Drawing_Tool
             }
         }
 
-        private int stride;
+        private int Stride
+        {
+            get
+            {
+                return bitmap.Stride;
+            }
+        }
+
+        private Bitmap bitmap;
 
         public DrawingPage(int width, int height)
         {
@@ -52,23 +60,8 @@ namespace PixelArt_Drawing_Tool
                 return;
             }
 
-            // defining parameters
-            PixelFormat format = PixelFormats.Bgra32;
-            stride = (width * format.BitsPerPixel + 7) / 8;
-            byte[] rawImage = new byte[stride * height];
-            
-            // creating a bitmap
-            BitmapSource bitmap = BitmapSource.Create(
-                width,
-                height,
-                96,
-                96,
-                format,
-                null,
-                rawImage,
-                stride);
-
-            Source = new WriteableBitmap(bitmap);
+            bitmap = new Bitmap(width, height, PixelFormats.Bgra32);
+            Source = bitmap.Source;
         }
 
         /// <summary>
@@ -123,7 +116,9 @@ namespace PixelArt_Drawing_Tool
         {
             byte[] colorData = { color.B, color.G, color.R, color.A };
             Int32Rect rect = new Int32Rect(x, y, 1, 1);
-            Source.WritePixels(rect, colorData, stride, 0);
+            Source.WritePixels(rect, colorData, Stride, 0);
+
+            Console.WriteLine(bitmap.AllPixelColors()[2, 5]);
         }
     }
 }
