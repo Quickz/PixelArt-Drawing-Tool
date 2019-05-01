@@ -12,7 +12,7 @@ namespace PixelArt_Drawing_Tool
 {
     class DrawingPage
     {
-        public WriteableBitmap Source { get; private set; }
+        public WriteableBitmap Source => bitmap.Source;
 
         /// <summary>
         ///  Called when Source is deleted
@@ -35,14 +35,6 @@ namespace PixelArt_Drawing_Tool
             }
         }
 
-        private int Stride
-        {
-            get
-            {
-                return bitmap.Stride;
-            }
-        }
-
         private Bitmap bitmap;
 
         public DrawingPage(int width, int height)
@@ -61,7 +53,6 @@ namespace PixelArt_Drawing_Tool
             }
 
             bitmap = new Bitmap(width, height, PixelFormats.Bgra32);
-            Source = bitmap.Source;
         }
 
         /// <summary>
@@ -114,11 +105,7 @@ namespace PixelArt_Drawing_Tool
         /// </summary>
         public void Draw(int x, int y, Color color)
         {
-            byte[] colorData = { color.B, color.G, color.R, color.A };
-            Int32Rect rect = new Int32Rect(x, y, 1, 1);
-            Source.WritePixels(rect, colorData, Stride, 0);
-
-            Console.WriteLine(bitmap.AllPixelColors()[2, 5]);
+            bitmap.WritePixel(x, y, color);
         }
     }
 }

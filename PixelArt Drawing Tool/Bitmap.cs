@@ -12,21 +12,19 @@ namespace PixelArt_Drawing_Tool
 {
     class Bitmap
     {
-        public WriteableBitmap Source
-        {
-            get
-            {
-                return source;
-            }
-        }
-
+        public WriteableBitmap Source { get; private set; }
         public int Stride { get; private set; }
-
-        private WriteableBitmap source;
 
         public Bitmap(int width, int height, PixelFormat format)
         {
-            source = CreateWritableBitmap(width, height, format);
+            Source = CreateWritableBitmap(width, height, format);
+        }
+
+        public void WritePixel(int x, int y, Color color)
+        {
+            byte[] colorData = { color.B, color.G, color.R, color.A };
+            Int32Rect rect = new Int32Rect(x, y, 1, 1);
+            Source.WritePixels(rect, colorData, Stride, 0);
         }
 
         public Color PixelColorAt(int x, int y)
