@@ -123,8 +123,55 @@ namespace PixelArt_Drawing_Tool
             // saving the current pixel
             hoveredPixel = new Pixel(x, y, bitmap.PixelColorAt(x, y));
 
+            double averageColor =
+                (hoveredPixel.color.R +
+                hoveredPixel.color.G +
+                hoveredPixel.color.B);
+
+            // 255 * 3 / 2
+
+            Color hoveredColor;
+
+            // dark
+            if (averageColor < 382.5d)
+            {
+                hoveredColor = Color.FromArgb(
+                    255,
+                    Lighter(hoveredPixel.color.R),
+                    Lighter(hoveredPixel.color.G),
+                    Lighter(hoveredPixel.color.B));
+            }
+            // light
+            else
+            {
+                hoveredColor = Color.FromArgb(
+                    255,
+                    Darker(hoveredPixel.color.R),
+                    Darker(hoveredPixel.color.G),
+                    Darker(hoveredPixel.color.B));
+            }
+
             // highlighting current pixel
-            bitmap.WritePixel(x, y, Colors.Gray);
+            bitmap.WritePixel(x, y, hoveredColor);
+
+
+            byte Lighter(byte number)
+            {
+                if (number + 75 > 255)
+                {
+                    return 255;
+                }
+                return (byte)(number + 75);
+            }
+
+            byte Darker(byte number)
+            {
+                if (number - 75 < 0)
+                {
+                    return 0;
+                }
+                return (byte)(number - 75);
+            }
         }
     }
 }
