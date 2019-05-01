@@ -36,6 +36,7 @@ namespace PixelArt_Drawing_Tool
         }
 
         private Bitmap bitmap;
+        private Pixel hoveredPixel;
 
         public DrawingPage(int width, int height)
         {
@@ -103,9 +104,27 @@ namespace PixelArt_Drawing_Tool
         ///  Draws a pixel on the specified
         ///  location in the page.
         /// </summary>
-        public void Draw(int x, int y, Color color)
+        public void Draw(Color color)
         {
-            bitmap.WritePixel(x, y, color);
+            hoveredPixel.color = color;
+        }
+
+        public void Hover(int x, int y)
+        {
+            if (hoveredPixel != null)
+            {
+                // restoring all pixel
+                bitmap.WritePixel(
+                    hoveredPixel.x,
+                    hoveredPixel.y,
+                    hoveredPixel.color);
+            }
+
+            // saving the current pixel
+            hoveredPixel = new Pixel(x, y, bitmap.PixelColorAt(x, y));
+
+            // highlighting current pixel
+            bitmap.WritePixel(x, y, Colors.Gray);
         }
     }
 }

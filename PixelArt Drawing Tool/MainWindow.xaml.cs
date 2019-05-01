@@ -69,7 +69,7 @@ namespace PixelArt_Drawing_Tool
                 return;
             }
 
-            page.Draw(x, y, color);
+            page.Draw(color);
         }
 
         /// <summary>
@@ -121,6 +121,10 @@ namespace PixelArt_Drawing_Tool
             {
                 ProcessDrawingInput(e);
             }
+
+            Point cursorPosition = e.GetPosition(PageContainer);
+            VectorInt pixelPosition = GetPixelPosition(cursorPosition);
+            page.Hover(pixelPosition.x, pixelPosition.y);
         }
 
         private void MenuItemSave_Click(object sender, RoutedEventArgs e)
