@@ -53,6 +53,7 @@ namespace PixelArt_Drawing_Tool
                 return;
             }
 
+            hoveredPixel = null;
             bitmap = new Bitmap(width, height, PixelFormats.Bgra32);
         }
 
