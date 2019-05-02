@@ -104,6 +104,7 @@
                            Margin="50"
                            MouseDown="PageContainer_MouseDown"
                            MouseMove="PageContainer_MouseMove"
+                           MouseLeave="PageContainer_MouseLeave"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                 </Grid>
 

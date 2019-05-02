@@ -127,6 +127,11 @@ namespace PixelArt_Drawing_Tool
             page.Hover(pixelPosition.x, pixelPosition.y);
         }
 
+        private void PageContainer_MouseLeave(object sender, MouseEventArgs e)
+        {
+            page.Unhover();
+        }
+
         private void MenuItemSave_Click(object sender, RoutedEventArgs e)
         {
             Save();

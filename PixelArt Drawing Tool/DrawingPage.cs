@@ -174,5 +174,14 @@ namespace PixelArt_Drawing_Tool
                 return (byte)(number - 75);
             }
         }
+
+        public void Unhover()
+        {
+            bitmap.WritePixel(
+                hoveredPixel.x,
+                hoveredPixel.y,
+                hoveredPixel.color);
+            hoveredPixel = null;
+        }
     }
 }
