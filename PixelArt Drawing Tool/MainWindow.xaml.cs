@@ -116,15 +116,15 @@ namespace PixelArt_Drawing_Tool
 
         private void PageContainer_MouseMove(object sender, MouseEventArgs e)
         {
+            Point cursorPosition = e.GetPosition(PageContainer);
+            VectorInt pixelPosition = GetPixelPosition(cursorPosition);
+            page.Hover(pixelPosition.x, pixelPosition.y);
+
             if (e.LeftButton == MouseButtonState.Pressed ||
                 e.RightButton == MouseButtonState.Pressed)
             {
                 ProcessDrawingInput(e);
             }
-
-            Point cursorPosition = e.GetPosition(PageContainer);
-            VectorInt pixelPosition = GetPixelPosition(cursorPosition);
-            page.Hover(pixelPosition.x, pixelPosition.y);
         }
 
         private void PageContainer_MouseLeave(object sender, MouseEventArgs e)
