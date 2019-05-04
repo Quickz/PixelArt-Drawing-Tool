@@ -20,6 +20,12 @@ namespace PixelArt_Drawing_Tool
             Source = CreateWritableBitmap(width, height, format);
         }
 
+        public Bitmap(BitmapSource image)
+        {
+            Stride = CalculateStride(image.PixelWidth, image.Format);
+            Source = new WriteableBitmap(image);
+        }
+
         public void WritePixel(int x, int y, Color color)
         {
             byte[] colorData = { color.B, color.G, color.R, color.A };
@@ -75,7 +81,7 @@ namespace PixelArt_Drawing_Tool
             PixelFormat format)
         {
             // defining parameters
-            Stride = (width * format.BitsPerPixel + 7) / 8;
+            Stride = CalculateStride(width, format);
             byte[] rawImage = new byte[Stride * height];
 
             // creating a bitmap
@@ -90,6 +96,11 @@ namespace PixelArt_Drawing_Tool
                 Stride);
 
             return new WriteableBitmap(bitmap);
+        }
+
+        private int CalculateStride(int width, PixelFormat format)
+        {
+            return (width * format.BitsPerPixel + 7) / 8;
         }
     }
 }

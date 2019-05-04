@@ -14,7 +14,8 @@
         <Menu DockPanel.Dock="Top" Background="White">
             <MenuItem Header="_File">
                 <MenuItem Name="MenuItemOpen"
-                          Header="_Open"/>
+                          Header="_Open"
+                          Click="MenuItemOpen_Click"/>
                 <MenuItem Name="MenuItemSave"
                           Header="_Save"
                           InputGestureText="Ctrl+S"

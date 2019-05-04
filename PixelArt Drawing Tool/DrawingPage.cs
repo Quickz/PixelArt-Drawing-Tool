@@ -101,6 +101,22 @@ namespace PixelArt_Drawing_Tool
             }
         }
 
+        public void Load(string path)
+        {
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                var decoder = new PngBitmapDecoder(
+                    stream,
+                    BitmapCreateOptions.None,
+                    BitmapCacheOption.Default);
+                BitmapFrame image = decoder.Frames.First();
+                bitmap = new Bitmap(image);
+
+                hoveredPixel = null;
+                OnPageSourceChanged();
+            }
+        }
+
         /// <summary>
         ///  Draws a pixel on the specified
         ///  location in the page.

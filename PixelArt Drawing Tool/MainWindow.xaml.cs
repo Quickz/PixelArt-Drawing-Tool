@@ -91,6 +91,7 @@ namespace PixelArt_Drawing_Tool
         private void LoadShortcuts()
         {
             shortcutManager.Add(Key.S, true, Save);
+            shortcutManager.Add(Key.O, true, Open);
         }
 
         private void ProcessDrawingInput(MouseEventArgs e)
@@ -137,6 +138,11 @@ namespace PixelArt_Drawing_Tool
             Save();
         }
 
+        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        {
+            Open();
+        }
+
         private void Save()
         {
             SaveFileDialog dialog = new SaveFileDialog();
@@ -150,6 +156,22 @@ namespace PixelArt_Drawing_Tool
             if (dialog.ShowDialog() == true)
             {
                 page.Save(dialog.FileName);
+            }
+        }
+
+        private void Open()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = Environment.GetFolderPath(
+                Environment.SpecialFolder.Desktop);
+
+            dialog.FileName = "untitled";
+            dialog.DefaultExt = ".png";
+            dialog.Filter = "PNG (*.png)|*.png";
+
+            if (dialog.ShowDialog() == true)
+            {
+                page.Load(dialog.FileName);
             }
         }
 
