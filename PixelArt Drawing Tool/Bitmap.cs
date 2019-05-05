@@ -40,9 +40,9 @@ namespace PixelArt_Drawing_Tool
             Source.CopyPixels(pixels, Stride, 0);
 
             int index = y * Stride + 4 * x;
-            byte red = pixels[index];
+            byte blue = pixels[index];
             byte green = pixels[index + 1];
-            byte blue = pixels[index + 2];
+            byte red = pixels[index + 2];
             byte alpha = pixels[index + 3];
 
             return Color.FromArgb(alpha, red, green, blue);
@@ -64,9 +64,9 @@ namespace PixelArt_Drawing_Tool
                 for (int x = 0; x < Source.PixelWidth; x++)
                 {
                     int index = y * Stride + 4 * x;
-                    byte red = pixels[index];
+                    byte blue = pixels[index];
                     byte green = pixels[index + 1];
-                    byte blue = pixels[index + 2];
+                    byte red = pixels[index + 2];
                     byte alpha = pixels[index + 3];
 
                     colors[x, y] = Color.FromArgb(alpha, red, green, blue);
