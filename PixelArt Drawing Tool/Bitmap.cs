@@ -84,6 +84,15 @@ namespace PixelArt_Drawing_Tool
             Stride = CalculateStride(width, format);
             byte[] rawImage = new byte[Stride * height];
 
+            // making sure the image pixels are by default white
+            // and fully transparent
+            for (int i = 0; i < rawImage.Length; i += 4)
+            {
+                rawImage[i] = 255;
+                rawImage[i + 1] = 255;
+                rawImage[i + 2] = 255;
+            }
+
             // creating a bitmap
             BitmapSource bitmap = BitmapSource.Create(
                 width,
