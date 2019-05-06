@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bitmap.cs" />
+    <Compile Include="DrawingPageBackground.cs" />
     <Compile Include="Pixel.cs" />
     <Compile Include="PixelartBrush.cs" />
     <Compile Include="ShortcutManager.cs" />

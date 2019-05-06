@@ -42,6 +42,15 @@ namespace PixelArt_Drawing_Tool
             brush.OpacityChanged += UpdateRectangleColor;
             brush.BrightnessChanged += UpdateRectangleColor;
             brush.BrightnessChanged += UpdateSliderBrightness;
+
+            UpdateBackground();
+        }
+
+        private void UpdateBackground()
+        {
+            PageBackground.Source = DrawingPageBackground
+                .CreateBackground(page.Width, page.Height)
+                .Source;
         }
 
         /// <summary>
@@ -197,6 +206,7 @@ namespace PixelArt_Drawing_Tool
                 int.TryParse(TextBoxPageHeight.Text, out int height))
             {
                 page.ResizeTo(width, height);
+                UpdateBackground();
             }
         }
 

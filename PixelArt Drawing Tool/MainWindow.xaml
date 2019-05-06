@@ -90,15 +90,16 @@
                       DockPanel.Dock="Top"
                       Grid.IsSharedSizeScope="True">
 
-                    <Canvas Name="PageBackground"
-                            Width="{
-                                Binding Path=ActualWidth,
-                                ElementName=PageContainer}"
-                            Height="{
-                                Binding Path=ActualHeight,
-                                ElementName=PageContainer}"
-                            Margin="50"
-                            Background="White"/>
+                    <Image Name="PageBackground"
+                           Width="{
+                               Binding Path=ActualWidth,
+                               ElementName=PageContainer}"
+                           Height="{
+                               Binding Path=ActualHeight,
+                               ElementName=PageContainer}"
+                           Margin="50"
+                           Stretch="Fill"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"/>
 
                     <Image Name="PageContainer"
                            Height="auto"
