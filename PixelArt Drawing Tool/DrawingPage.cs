@@ -149,11 +149,17 @@ namespace PixelArt_Drawing_Tool
 
             Color hoveredColor;
 
+            byte alpha = 200;
+            if (hoveredPixel.color.A > 200)
+            {
+                alpha = hoveredPixel.color.A;
+            }
+
             // dark
             if (averageColor < 382.5d)
             {
                 hoveredColor = Color.FromArgb(
-                    255,
+                    alpha,
                     Lighter(hoveredPixel.color.R),
                     Lighter(hoveredPixel.color.G),
                     Lighter(hoveredPixel.color.B));
@@ -162,7 +168,7 @@ namespace PixelArt_Drawing_Tool
             else
             {
                 hoveredColor = Color.FromArgb(
-                    255,
+                    alpha,
                     Darker(hoveredPixel.color.R),
                     Darker(hoveredPixel.color.G),
                     Darker(hoveredPixel.color.B));

@@ -27,7 +27,6 @@ namespace PixelArt_Drawing_Tool
                         color = Color.FromRgb(0x73, 0x73, 0x73);
                     }
                     background.WritePixel(i, j, color);
-
                 }
             }
             return background;
