@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace PixelArt_Drawing_Tool
 {
-    class Bitmap
+    public class Bitmap
     {
         public WriteableBitmap Source { get; private set; }
         public int Stride { get; private set; }
