@@ -13,6 +13,10 @@
     <DockPanel Background="LightGray">
         <Menu DockPanel.Dock="Top" Background="White">
             <MenuItem Header="_File">
+                <MenuItem Name="MenuItemNew"
+                          Header="_New"
+                          InputGestureText="Ctrl+N"
+                          Click="MenuItemNew_Click"/>
                 <MenuItem Name="MenuItemOpen"
                           Header="_Open"
                           InputGestureText="Ctrl+O"

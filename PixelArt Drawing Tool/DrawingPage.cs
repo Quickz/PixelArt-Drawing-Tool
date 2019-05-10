@@ -57,6 +57,12 @@ namespace PixelArt_Drawing_Tool
             bitmap = new Bitmap(width, height, PixelFormats.Bgra32);
         }
 
+        public void Reset()
+        {
+            Create(Width, Height);
+            OnPageSourceChanged();
+        }
+
         /// <summary>
         ///  Changes the current size
         ///  of the page.

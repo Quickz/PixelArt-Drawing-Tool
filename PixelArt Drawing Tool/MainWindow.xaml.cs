@@ -101,6 +101,7 @@ namespace PixelArt_Drawing_Tool
         {
             shortcutManager.Add(Key.S, true, Save);
             shortcutManager.Add(Key.O, true, Open);
+            shortcutManager.Add(Key.N, true, New);
         }
 
         private void ProcessDrawingInput(MouseEventArgs e)
@@ -152,6 +153,11 @@ namespace PixelArt_Drawing_Tool
             Open();
         }
 
+        private void MenuItemNew_Click(object sender, RoutedEventArgs e)
+        {
+            New();
+        }
+
         private void Save()
         {
             SaveFileDialog dialog = new SaveFileDialog();
@@ -182,6 +188,11 @@ namespace PixelArt_Drawing_Tool
             {
                 page.Load(dialog.FileName);
             }
+        }
+
+        private void New()
+        {
+            page.Reset();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
