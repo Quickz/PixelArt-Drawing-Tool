@@ -130,6 +130,11 @@ namespace PixelArt_Drawing_Tool
         public void Draw(Color color)
         {
             hoveredPixel.color = color;
+            bitmap.WritePixel(
+                hoveredPixel.x,
+                hoveredPixel.y,
+                hoveredPixel.color);
+            Hover(hoveredPixel.x, hoveredPixel.y);
         }
 
         public void Hover(int x, int y)
