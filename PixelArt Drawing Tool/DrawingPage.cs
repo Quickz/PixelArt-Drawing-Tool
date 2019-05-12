@@ -97,11 +97,9 @@ namespace PixelArt_Drawing_Tool
         /// </param>
         public void Save(string path)
         {
-            using (
-                FileStream stream = new FileStream(path,
-                FileMode.Create))
+            using (var stream = new FileStream(path, FileMode.Create))
             {
-                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                var encoder = new PngBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(Source));
                 encoder.Save(stream);
             }

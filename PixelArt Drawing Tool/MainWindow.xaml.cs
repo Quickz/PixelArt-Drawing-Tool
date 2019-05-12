@@ -160,7 +160,7 @@ namespace PixelArt_Drawing_Tool
 
         private void Save()
         {
-            SaveFileDialog dialog = new SaveFileDialog();
+            var dialog = new SaveFileDialog();
             dialog.InitialDirectory = Environment.GetFolderPath(
                 Environment.SpecialFolder.Desktop);
 
@@ -176,7 +176,7 @@ namespace PixelArt_Drawing_Tool
 
         private void Open()
         {
-            OpenFileDialog dialog = new OpenFileDialog();
+            var dialog = new OpenFileDialog();
             dialog.InitialDirectory = Environment.GetFolderPath(
                 Environment.SpecialFolder.Desktop);
 
