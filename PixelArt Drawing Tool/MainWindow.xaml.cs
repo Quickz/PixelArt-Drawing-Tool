@@ -44,6 +44,7 @@ namespace PixelArt_Drawing_Tool
             brush.BrightnessChanged += UpdateSliderBrightness;
 
             UpdateBackground();
+            OnPageSourceChanged(this, EventArgs.Empty);
         }
 
         private void UpdateBackground()
@@ -61,6 +62,7 @@ namespace PixelArt_Drawing_Tool
         private void OnPageSourceChanged(object sender, EventArgs args)
         {
             PageContainer.Source = page.Source;
+            LabelPageSize.Content = $"{page.Width} x {page.Height}px";
         }
 
         /// <summary>

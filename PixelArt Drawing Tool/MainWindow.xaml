@@ -115,38 +115,46 @@
                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                 </Grid>
 
-                <StackPanel Grid.Column="2"
-                            Background="white">
-                    
-                    <UniformGrid Columns="2" Margin="10 10 10 0">
-                        <Label Content="Width"
+                <DockPanel Grid.Column="2"
+                           Background="white">
+
+                    <StackPanel DockPanel.Dock="Top">
+                        <UniformGrid Columns="2" Margin="10 10 10 0">
+                            <Label Content="Width"
                                FontSize="14"/>
-                        <TextBox Name="TextBoxPageWidth"
+                            <TextBox Name="TextBoxPageWidth"
                                  FontSize="14"
                                  HorizontalContentAlignment="Center"
                                  VerticalAlignment="Center"
                                  Padding="0 2"/>
-                    </UniformGrid>
+                        </UniformGrid>
 
-                    <UniformGrid Columns="2" Margin="10 10 10 10">
-                        <Label Content="Height"
+                        <UniformGrid Columns="2" Margin="10 10 10 10">
+                            <Label Content="Height"
                                FontSize="14"/>
-                        <TextBox Name="TextBoxPageHeight"
+                            <TextBox Name="TextBoxPageHeight"
                                  FontSize="14"
                                  HorizontalContentAlignment="Center"
                                  VerticalAlignment="Center"
                                  Padding="0 2"/>
-                    </UniformGrid>
+                        </UniformGrid>
 
-                    <UniformGrid Columns="2" Margin="10 0">
-                        <Label/>
-                        <Button Name="ButtonResize"
+                        <UniformGrid Columns="2" Margin="10 0">
+                            <Label/>
+                            <Button Name="ButtonResize"
                                 Content="Resize"
                                 FontSize="14"
                                 Click="ButtonResize_Click"/>
-                    </UniformGrid>
-                    
-                </StackPanel>
+                        </UniformGrid>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom">
+                        <Label
+                            Name="LabelPageSize"
+                            Content="32 x 32px"
+                            FontSize="14"/>
+                    </StackPanel>
+
+                </DockPanel>
             </Grid>
             
         </DockPanel>
