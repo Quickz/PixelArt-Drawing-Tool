@@ -20,6 +20,12 @@ namespace PixelArt_Drawing_Tool
         /// </summary>
         public event EventHandler PageSourceChanged;
 
+        /// <summary>
+        ///  Called when the value of the hovered
+        ///  pixel is changed.
+        /// </summary>
+        public event EventHandler HoveredPixelChanged;
+
         public int Width
         {
             get
@@ -35,8 +41,18 @@ namespace PixelArt_Drawing_Tool
             }
         }
 
-        private Bitmap bitmap;
+        public Pixel HoveredPixel
+        { 
+            get => hoveredPixel;
+            private set
+            {
+                hoveredPixel = value;
+                OnHoveredPixelChanged();
+            }
+        }
         private Pixel hoveredPixel;
+
+        private Bitmap bitmap;
 
         public DrawingPage(int width, int height)
         {
@@ -53,7 +69,7 @@ namespace PixelArt_Drawing_Tool
                 return;
             }
 
-            hoveredPixel = null;
+            HoveredPixel = null;
             bitmap = new Bitmap(width, height, PixelFormats.Bgra32);
         }
 
@@ -88,6 +104,15 @@ namespace PixelArt_Drawing_Tool
         }
 
         /// <summary>
+        ///  Called when the value of the hovered
+        ///  pixel is changed.
+        /// </summary>
+        private void OnHoveredPixelChanged()
+        {
+            HoveredPixelChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
         ///  Saves a file of the image
         ///  at the specified location.
         /// </summary>
@@ -116,7 +141,7 @@ namespace PixelArt_Drawing_Tool
                 BitmapFrame image = decoder.Frames.First();
                 bitmap = new Bitmap(image);
 
-                hoveredPixel = null;
+                HoveredPixel = null;
                 OnPageSourceChanged();
             }
         }
@@ -127,41 +152,41 @@ namespace PixelArt_Drawing_Tool
         /// </summary>
         public void Draw(Color color)
         {
-            hoveredPixel.color = color;
+            HoveredPixel.color = color;
             bitmap.WritePixel(
-                hoveredPixel.x,
-                hoveredPixel.y,
-                hoveredPixel.color);
-            Hover(hoveredPixel.x, hoveredPixel.y);
+                HoveredPixel.x,
+                HoveredPixel.y,
+                HoveredPixel.color);
+            Hover(HoveredPixel.x, HoveredPixel.y);
         }
 
         public void Hover(int x, int y)
         {
-            if (hoveredPixel != null)
+            if (HoveredPixel != null)
             {
                 // restoring all pixel
                 bitmap.WritePixel(
-                    hoveredPixel.x,
-                    hoveredPixel.y,
-                    hoveredPixel.color);
+                    HoveredPixel.x,
+                    HoveredPixel.y,
+                    HoveredPixel.color);
             }
 
             // saving the current pixel
-            hoveredPixel = new Pixel(x, y, bitmap.PixelColorAt(x, y));
+            HoveredPixel = new Pixel(x, y, bitmap.PixelColorAt(x, y));
 
             double averageColor =
-                (hoveredPixel.color.R +
-                hoveredPixel.color.G +
-                hoveredPixel.color.B);
+                (HoveredPixel.color.R +
+                HoveredPixel.color.G +
+                HoveredPixel.color.B);
 
             // 255 * 3 / 2
 
             Color hoveredColor;
 
             byte alpha = 200;
-            if (hoveredPixel.color.A > 200)
+            if (HoveredPixel.color.A > 200)
             {
-                alpha = hoveredPixel.color.A;
+                alpha = HoveredPixel.color.A;
             }
 
             // dark
@@ -169,18 +194,18 @@ namespace PixelArt_Drawing_Tool
             {
                 hoveredColor = Color.FromArgb(
                     alpha,
-                    Lighter(hoveredPixel.color.R),
-                    Lighter(hoveredPixel.color.G),
-                    Lighter(hoveredPixel.color.B));
+                    Lighter(HoveredPixel.color.R),
+                    Lighter(HoveredPixel.color.G),
+                    Lighter(HoveredPixel.color.B));
             }
             // light
             else
             {
                 hoveredColor = Color.FromArgb(
                     alpha,
-                    Darker(hoveredPixel.color.R),
-                    Darker(hoveredPixel.color.G),
-                    Darker(hoveredPixel.color.B));
+                    Darker(HoveredPixel.color.R),
+                    Darker(HoveredPixel.color.G),
+                    Darker(HoveredPixel.color.B));
             }
 
             // highlighting current pixel
@@ -209,10 +234,10 @@ namespace PixelArt_Drawing_Tool
         public void Unhover()
         {
             bitmap.WritePixel(
-                hoveredPixel.x,
-                hoveredPixel.y,
-                hoveredPixel.color);
-            hoveredPixel = null;
+                HoveredPixel.x,
+                HoveredPixel.y,
+                HoveredPixel.color);
+            HoveredPixel = null;
         }
     }
 }

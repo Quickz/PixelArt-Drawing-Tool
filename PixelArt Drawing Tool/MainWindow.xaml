@@ -147,10 +147,15 @@
                                 Click="ButtonResize_Click"/>
                         </UniformGrid>
                     </StackPanel>
-                    <StackPanel DockPanel.Dock="Bottom">
+                    <StackPanel DockPanel.Dock="Bottom"
+                                Orientation="Horizontal">
                         <Label
                             Name="LabelPageSize"
                             Content="32 x 32px"
+                            FontSize="14"/>
+                        <Label
+                            Name="LabelHoveredPixelPosition"
+                            Content="0:0"
                             FontSize="14"/>
                     </StackPanel>
 

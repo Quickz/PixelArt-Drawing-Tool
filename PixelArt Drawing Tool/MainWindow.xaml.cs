@@ -36,6 +36,7 @@ namespace PixelArt_Drawing_Tool
             page = new DrawingPage(defaultSize.x, defaultSize.y);
             PageContainer.Source = page.Source;
             page.PageSourceChanged += OnPageSourceChanged;
+            page.HoveredPixelChanged += OnHoveredPixelChanged;
 
             LoadShortcuts();
 
@@ -63,6 +64,23 @@ namespace PixelArt_Drawing_Tool
         {
             PageContainer.Source = page.Source;
             LabelPageSize.Content = $"{page.Width} x {page.Height}px";
+        }
+
+        /// <summary>
+        ///  Called when Source is deleted
+        ///  or overwritten with a new one.
+        /// </summary>
+        private void OnHoveredPixelChanged(object sender, EventArgs e)
+        {
+            if (page.HoveredPixel == null)
+            {
+                LabelHoveredPixelPosition.Content = string.Empty;
+                return;
+            }
+
+            LabelHoveredPixelPosition.Content =
+                $"{page.HoveredPixel.x}:" +
+                $"{page.HoveredPixel.y}";
         }
 
         /// <summary>
