@@ -11,7 +11,7 @@ using System.Windows.Input;
  * to support more complex shortcut combinations.
  **/
 
-namespace PixelArt_Drawing_Tool
+namespace Quickz.PixelArt.App
 {
     class ShortcutManager
     {

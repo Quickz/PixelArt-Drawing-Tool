@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PixelArt_Drawing_Tool.Properties
+namespace Quickz.PixelArt.App.Properties
 {
 
 

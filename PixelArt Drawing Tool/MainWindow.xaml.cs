@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 
-namespace PixelArt_Drawing_Tool
+namespace Quickz.PixelArt.App
 {
     /// <summary>
     ///  Interaction logic for MainWindow.xaml

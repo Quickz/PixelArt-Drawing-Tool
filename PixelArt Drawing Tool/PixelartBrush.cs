@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace PixelArt_Drawing_Tool
+namespace Quickz.PixelArt.App
 {
     class PixelartBrush
     {

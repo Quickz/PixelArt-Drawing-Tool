@@ -57,9 +57,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PixelArt Drawing Tool\PixelArt Drawing Tool.csproj">
+    <ProjectReference Include="..\PixelArt Drawing Tool\PixelArtDrawingTool.csproj">
       <Project>{807dc463-0508-4ab3-acb4-ac7db8602a9a}</Project>
-      <Name>PixelArt Drawing Tool</Name>
+      <Name>PixelArtDrawingTool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

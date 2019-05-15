@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace PixelArt_Drawing_Tool
+namespace Quickz.PixelArt.App
 {
     static class DrawingPageBackground
     {

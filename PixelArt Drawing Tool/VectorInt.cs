@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PixelArt_Drawing_Tool
+namespace Quickz.PixelArt.App
 {
     struct VectorInt
     {

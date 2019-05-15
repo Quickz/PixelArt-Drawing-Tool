@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Media;
 using NUnit.Framework;
-using PixelArt_Drawing_Tool;
+using Quickz.PixelArt.App;
 
-namespace PixelArt_Drawing_Tool_Tests
+namespace Quickz.PixelArt.Tests
 {
     public class BitmapTests
     {
