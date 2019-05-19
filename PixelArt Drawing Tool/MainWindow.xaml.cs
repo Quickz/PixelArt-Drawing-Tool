@@ -46,6 +46,9 @@ namespace Quickz.PixelArt.App
 
             UpdateBackground();
             OnPageSourceChanged(this, EventArgs.Empty);
+
+            TextBoxPageWidth.Text = page.Width.ToString();
+            TextBoxPageHeight.Text = page.Height.ToString();
         }
 
         private void UpdateBackground()
