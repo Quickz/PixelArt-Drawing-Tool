@@ -150,14 +150,47 @@
                     <StackPanel DockPanel.Dock="Bottom"
                                 VerticalAlignment="Bottom"
                                 Orientation="Horizontal">
-                        <Label
-                            Name="LabelPageSize"
-                            Content="32 x 32px"
-                            FontSize="14"/>
-                        <Label
-                            Name="LabelHoveredPixelPosition"
-                            Content="0:0"
-                            FontSize="14"/>
+
+                        <StackPanel>
+                            <StackPanel
+                                Name="ColorPalette"
+                                Orientation="Horizontal"
+                                Margin="15 15">
+                                
+                                <Button
+                                    Background="White"
+                                    Width="30"
+                                    Height="30"/>
+                                <Button
+                                    Background="Black"
+                                    Width="30"
+                                    Height="30"/>
+                                <Button
+                                    Background="Red"
+                                    Width="30"
+                                    Height="30"/>
+                                <Button
+                                    Background="Green"
+                                    Width="30"
+                                    Height="30"/>
+                                <Button
+                                    Background="Blue"
+                                    Width="30"
+                                    Height="30"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label
+                                    Name="LabelPageSize"
+                                    Content="32 x 32px"
+                                    FontSize="14"/>
+                                <Label
+                                    Name="LabelHoveredPixelPosition"
+                                    Content="0:0"
+                                    FontSize="14"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
                     </StackPanel>
 
                 </DockPanel>
