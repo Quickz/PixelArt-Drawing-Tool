@@ -148,6 +148,7 @@
                         </UniformGrid>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Bottom"
+                                VerticalAlignment="Bottom"
                                 Orientation="Horizontal">
                         <Label
                             Name="LabelPageSize"
