@@ -153,30 +153,12 @@
 
                         <StackPanel>
                             <StackPanel
-                                Name="ColorPalette"
+                                Name="ColorPaletteContainer"
                                 Orientation="Horizontal"
-                                Margin="15 15">
-                                
-                                <Button
-                                    Background="White"
-                                    Width="30"
-                                    Height="30"/>
-                                <Button
-                                    Background="Black"
-                                    Width="30"
-                                    Height="30"/>
-                                <Button
-                                    Background="Red"
-                                    Width="30"
-                                    Height="30"/>
-                                <Button
-                                    Background="Green"
-                                    Width="30"
-                                    Height="30"/>
-                                <Button
-                                    Background="Blue"
-                                    Width="30"
-                                    Height="30"/>
+                                Margin="15 15"
+                                MinWidth="30"
+                                MinHeight="30">
+
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">

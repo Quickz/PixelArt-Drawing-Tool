@@ -50,19 +50,9 @@ namespace Quickz.PixelArt.App
             TextBoxPageWidth.Text = page.Width.ToString();
             TextBoxPageHeight.Text = page.Height.ToString();
 
-            UpdateColorPalette();
-        }
-
-        private void UpdateColorPalette()
-        {
-            foreach (object child in ColorPalette.Children)
-            {
-                if (child is Button)
-                {
-                    var colorButton = child as Button;
-                    colorButton.Click += OnColorPaletteButtonClicked;
-                }
-            }
+            ColorPalette.Create(
+                ColorPaletteContainer,
+                OnColorPaletteButtonClicked);
         }
 
         private void OnColorPaletteButtonClicked(object sender, EventArgs e)
